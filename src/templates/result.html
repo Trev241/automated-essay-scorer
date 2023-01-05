@@ -1,0 +1,37 @@
+{% extends 'layout_base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="display-2">Results</h1>
+    <p class="lead">Your essay's score is <b>{{ grade }}</b></p>
+
+    <table class="table caption-top">
+        <caption>Breakdown of scores</caption>
+        <thead>
+            <tr>
+                <th scope="col">Score</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="col">1</td>
+                <td scope="col">Poorly-developed</td>
+            </tr>
+            <tr>
+                <td scope="col">2</td>
+                <td scope="col">Adequate</td>
+            </tr>
+            <tr>
+                <td scope="col">3</td>
+                <td scope="col">Above satisfactory</td>
+            </tr>
+            <tr>
+                <td scope="col">4</td>
+                <td scope="col">Exceptional or near-perfect</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('index') }}">Return</a>
+</div>
+{% endblock %}

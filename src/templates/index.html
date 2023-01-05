@@ -1,0 +1,45 @@
+
+{% extends 'layout_base.html' %}
+{% block content %}
+<div class="container mt-3 border border-dark">
+    <h2>Instructions</h2>
+    <ol>
+        <li>Select a prompt using the numbered buttons below.</li>
+        <li>Type in your essay in the space given.</li>
+        <li>Submit it to get your predicted grade!</li>
+    </ol>
+</div>
+
+<div class="container mt-3">
+    <form method="POST", action="">
+        <div class="container">
+            <div class="row">
+                <div class="btn-group" role="group" aria-label="prompts">
+                    {{ prompt_form.prompt1(class="btn btn-dark btn-sm") }}
+                    {{ prompt_form.prompt2(class="btn btn-dark btn-sm") }}
+                    {{ prompt_form.prompt3(class="btn btn-dark btn-sm") }}
+                    {{ prompt_form.prompt4(class="btn btn-dark btn-sm") }}
+                    {{ prompt_form.prompt5(class="btn btn-dark btn-sm") }}
+                    {{ prompt_form.prompt6(class="btn btn-dark btn-sm") }}
+                    {{ prompt_form.prompt7(class="btn btn-dark btn-sm") }}
+                    {{ prompt_form.prompt8(class="btn btn-dark btn-sm") }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="container p-3">
+                    {{ prompt|markdown }}
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form method="POST" action="">
+
+        {{ essay_form.csrf_token }}
+        {{ essay_form.hidden_tag() }}
+
+        {{ essay_form.essay(only_input=True, rows=10, cols=70, class="form-control") }} <br>
+        {{ essay_form.submit(class="btn btn-success") }}
+    </form>
+</div>
+{% endblock %}
