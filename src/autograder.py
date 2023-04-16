@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import pickle
+import lzma
 
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -17,33 +18,14 @@ FEATURES = (
     'lexical_diversity', 'unique_words', 'relevance (TF-IDF)', 'readability', 'grammar_errors'
 )
 
-FEATURE_DESCRIPTIONS = {
-    'ADJ': 'Number of adjectives used',
-    'ADV': 'Number of adverbs used',
-    'ADP': 'Number of adpositions used',
-    'NOUN': 'Number of nouns used',
-    'VERB': 'Number of verbs used',
-    'INTJ': 'Number of interjections used',
-    'PART': 'Number of participles used',
-    'SCONJ': 'Number of subordinating conjunctions used',
-    'CCONJ': 'Number of coordinating conjunctions used',
-    'word_count': 'Number of words (excluding stopwords) used',
-    'sent_count': 'Number of sentences used',
-    'polarity (TB)': 'Measures how positive or negative an essay is using TextBlob (TB)',
-    'subjectivity (TB)': 
-        'Uses TextBlob (TB) to measure the subjectivity of an essay by observing the frequency of statements that express opinion, judgement, anecdotes, etc.',
-    'positive (VD)': 'Measures the positivity of an essay using Vader Lexicon (VD)',
-    'negative (VD)': 'Measures the negativity of an essay using Vader Lexicon (VD)',
-    'neutral (VD)': 'Measures the neutraility of an essay using Vader Lexicon (VD)',
-    'compound (VD)': 'Measures all three polarities of an essay in a composite score using Vader Lexicon (VD)',
-    'spelling_errors': 'Number of isolated spelling errors detected using enchant',
-    'correct_spellings': 'The difference between the word count of an essay and the number of spelling errors flagged',
-    'lexical_diversity': 'Ratio of the number of tokens to number of token types (distinct tokens)',
-    'unique_words': 'Number of unique words (excluding stopwords)',
-    'relevance (TF-IDF)': 'Measures the cosine similarity of the vectorized essay with its prompt',
-    'readability': 'Measures the readability of an essay using Dale-Chall\'s readability formula',
-    'grammar_errors': 'Number of grammar errors found using language_tool_python'
-}
+with open('data/feature_descriptions.txt', 'r') as f:
+    FEATURE_DESCRIPTIONS = {}
+    line = f.readline()
+    
+    while line:
+        key, value = line.split(': ')
+        FEATURE_DESCRIPTIONS[key] = value
+        line = f.readline()
 
 class Autograder:
     PROCESSED_DIR = 'data/processed'
@@ -59,11 +41,11 @@ class Autograder:
         for essay_set in range(1, 9):
             # Checking if processed essays exist...
             try:
-                processed_set = pd.read_csv(f'{Autograder.PROCESSED_DIR}/processed_data_{essay_set}.tsv', sep='\t')
+                processed_set = pd.read_csv(f'{Autograder.PROCESSED_DIR}/processed_data_{essay_set}.tsv', sep='\t', compression='gzip')
             except Exception as e:
                 print(f'Failed to load processed set {essay_set}. Processing now... (This might take some time): {e}')
                 processed_set = self.extractor.process(essay_set=essay_set)
-                processed_set.to_csv(f'{Autograder.PROCESSED_DIR}/processed_data_{essay_set}.tsv', sep='\t')
+                processed_set.to_csv(f'{Autograder.PROCESSED_DIR}/processed_data_{essay_set}.tsv', sep='\t', compression='gzip')
 
             # Checking if saved models exist...
             if not Path(f'{Autograder.MODEL_DIR}/model_{essay_set}.sav').is_file():
@@ -83,7 +65,8 @@ class Autograder:
                     ('random_forest', RandomForestClassifier(n_estimators=1000, criterion='entropy'))
                 ])
                 model.fit(X_train, y_train)
-                pickle.dump(model, open(f'{Autograder.MODEL_DIR}/model_{essay_set}.sav', 'wb'))       
+                with lzma.open(f'{Autograder.MODEL_DIR}/model_{essay_set}.sav', 'wb') as f:
+                    pickle.dump(model, f)
         
         print('Successfully loaded all processed essays and models')
 
@@ -92,7 +75,8 @@ class Autograder:
         essay = self.extractor.process(essay_set=CUSTOM_INPUT)
         essay_set = essay['parent_set'][0]
         X = pd.DataFrame(essay, columns=FEATURES)
-        model = pickle.load(open(f'{Autograder.MODEL_DIR}/model_{essay_set}.sav', 'rb'))
+        with lzma.open(f'{Autograder.MODEL_DIR}/model_{essay_set}.sav', 'rb') as f:
+            model = pickle.load(f)
 
         report = {
             'prediction': { 
