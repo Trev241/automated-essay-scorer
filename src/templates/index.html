@@ -1,45 +1,59 @@
 
 {% extends 'layout_base.html' %}
 {% block content %}
-<div class="container mt-3 border border-dark">
-    <h2>Instructions</h2>
-    <ol>
-        <li>Select a prompt using the numbered buttons below.</li>
-        <li>Type in your essay in the space given.</li>
-        <li>Submit it to get your predicted grade!</li>
-    </ol>
-</div>
+<div class="container my-5">
+    <div class="mb-3">
+        <h1 class="display-2">Automated Essay Scorer</h1>
+        <p class="lead">
+            An Automated Essay Scoring (AES) System that uses machine learning techniques to predict the grade of an essay
+        </p>
+    </div>
 
-<div class="container mt-3">
-    <form method="POST", action="">
-        <div class="container">
-            <div class="row">
-                <div class="btn-group" role="group" aria-label="prompts">
-                    {{ prompt_form.prompt1(class="btn btn-dark btn-sm") }}
-                    {{ prompt_form.prompt2(class="btn btn-dark btn-sm") }}
-                    {{ prompt_form.prompt3(class="btn btn-dark btn-sm") }}
-                    {{ prompt_form.prompt4(class="btn btn-dark btn-sm") }}
-                    {{ prompt_form.prompt5(class="btn btn-dark btn-sm") }}
-                    {{ prompt_form.prompt6(class="btn btn-dark btn-sm") }}
-                    {{ prompt_form.prompt7(class="btn btn-dark btn-sm") }}
-                    {{ prompt_form.prompt8(class="btn btn-dark btn-sm") }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="container p-3">
-                    {{ prompt|markdown }}
-                </div>
+    <hr class="mb-5" />
+
+    <div class="mb-5">
+        <h2>How do I use it?</h2>
+        <p>You can try out the model in just three easy steps.</p>
+        <ol>
+            <li>Choose a prompt</li>
+            <li>Type in your essay</li>
+            <li>Submit!</li>
+        </ol>
+    </div>
+
+    <form method="post">
+        <div class="row mb-5">
+            <div class="btn-group" role="group" aria-label="prompts">
+                {{ prompt_form.prompt1(class="btn btn-outline-dark btn-sm") }}
+                {{ prompt_form.prompt2(class="btn btn-outline-dark btn-sm") }}
+                {{ prompt_form.prompt3(class="btn btn-outline-dark btn-sm") }}
+                {{ prompt_form.prompt4(class="btn btn-outline-dark btn-sm") }}
+                {{ prompt_form.prompt5(class="btn btn-outline-dark btn-sm") }}
+                {{ prompt_form.prompt6(class="btn btn-outline-dark btn-sm") }}
+                {{ prompt_form.prompt7(class="btn btn-outline-dark btn-sm") }}
+                {{ prompt_form.prompt8(class="btn btn-outline-dark btn-sm") }}
             </div>
         </div>
     </form>
+    
+    <div class="row">
+        <div class="container mb-3">
+            {{ prompt|markdown }}
+        </div>
+    </div>
 
     <form method="POST" action="">
 
         {{ essay_form.csrf_token }}
         {{ essay_form.hidden_tag() }}
 
-        {{ essay_form.essay(only_input=True, rows=10, cols=70, class="form-control") }} <br>
-        {{ essay_form.submit(class="btn btn-success") }}
+        {{ essay_form.essay(only_input=True, rows=10, cols=70, class="form-control mb-2") }}
+        <div>
+            <div class="text-muted mb-2">
+                <i>Submissions can take a while. Please be patient.</i>
+            </div>
+            {{ essay_form.submit(class="btn btn-success me-auto px-5") }}
+        </div>
     </form>
 </div>
 {% endblock %}

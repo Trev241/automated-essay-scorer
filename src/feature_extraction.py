@@ -15,10 +15,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
-for dependency in (
-    'vader_lexicon',
-):
-    nltk.download(dependency)
 
 warnings.filterwarnings('ignore')
 d = enchant.Dict('en_US')
@@ -43,10 +39,15 @@ MAX_ACHIEVABLE_SCORE = {
 PROGRESS_BAR_LENGTH = 50
 
 class FeatureExtractor:
-    def __init__(self, path_to_essays='src/data/training_set_rel3.tsv', path_to_custom='src/data/custom_input.tsv'):
+    def __init__(self, path_to_essays='data/training_set_rel3.tsv', path_to_custom='data/custom_input.tsv'):
         # Assigning paths
         self.path_to_essays = path_to_essays
         self.path_to_custom = path_to_custom
+        
+        for dependency in (
+            'vader_lexicon',
+        ):
+            nltk.download(dependency)
 
     def process(self, essay_set, debug_text=False):
         """
@@ -61,7 +62,7 @@ class FeatureExtractor:
         custom = pd.read_csv(self.path_to_custom, sep='\t', encoding='utf-8')
 
         # Reading prompts
-        with open('src/data/prompts.txt', 'r') as f:
+        with open('data/prompts.txt', 'r') as f:
             essay_prompts = {essay_set + 1: prompt for essay_set, prompt in enumerate(f)}
 
         # Adding prompts to data
@@ -203,8 +204,8 @@ class FeatureExtractor:
         
         temp_df = pd.DataFrame(vec_essay.toarray(), columns=v1.get_feature_names())
         temp_df = pd.DataFrame(vec_prompt.toarray(), columns=v1.get_feature_names())
-        temp_df.to_csv('src/data/vector-essays.tsv', sep='\t')
-        temp_df.to_csv('src/data/vector-prompt.tsv', sep='\t')
+        temp_df.to_csv('data/vector-essays.tsv', sep='\t')
+        temp_df.to_csv('data/vector-prompt.tsv', sep='\t')
 
         vec_prompt = v2.fit_transform([cleaned_prompt])
         vec_essay = v2.transform(cleaned_essays) 

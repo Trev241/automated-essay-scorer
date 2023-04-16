@@ -1,0 +1,47 @@
+essay_id	parent_set	essay	domain1_score
+1	1	"A computer is a machine that can be programmed to carry out sequences of arithmetic or logical operations (computation) automatically. Modern digital electronic computers can perform generic sets of operations known as programs. These programs enable computers to perform a wide range of tasks. A computer system is a nominally complete computer that includes the hardware, operating system (main software), and peripheral equipment needed and used for full operation. This term may also refer to a group of computers that are linked and function together, such as a computer network or computer cluster.
+
+A broad range of industrial and consumer products use computers as control systems. Simple special-purpose devices like microwave ovens and remote controls are included, as are factory devices like industrial robots and computer-aided design, as well as general-purpose devices like personal computers and mobile devices like smartphones. Computers power the Internet, which links billions of other computers and users.
+
+Early computers were meant to be used only for calculations. Simple manual instruments like the abacus have aided people in doing calculations since ancient times. Early in the Industrial Revolution, some mechanical devices were built to automate long, tedious tasks, such as guiding patterns for looms. More sophisticated electrical machines did specialized analog calculations in the early 20th century. The first digital electronic calculating machines were developed during World War II. The first semiconductor transistors in the late 1940s were followed by the silicon-based MOSFET (MOS transistor) and monolithic integrated circuit chip technologies in the late 1950s, leading to the microprocessor and the microcomputer revolution in the 1970s. The speed, power and versatility of computers have been increasing dramatically ever since then, with transistor counts increasing at a rapid pace (as predicted by Moore's law), leading to the Digital Revolution during the late 20th to early 21st centuries.
+
+Conventionally, a modern computer consists of at least one processing element, typically a central processing unit (CPU) in the form of a microprocessor, along with some type of computer memory, typically semiconductor memory chips. The processing element carries out arithmetic and logical operations, and a sequencing and control unit can change the order of operations in response to stored information. Peripheral devices include input devices (keyboards, mice, joystick, etc.), output devices (monitor screens, printers, etc.), and input/output devices that perform both functions (e.g., the 2000s-era touchscreen). Peripheral devices allow information to be retrieved from an external source and they enable the result of operations to be saved and retrieved.
+
+Etymology
+A human computer.
+A human computer, with microscope and calculator, 1952
+According to the Oxford English Dictionary, the first known use of computer was in a 1613 book called The Yong Mans Gleanings by the English writer Richard Brathwait: ""I haue [sic] read the truest computer of Times, and the best Arithmetician that euer [sic] breathed, and he reduceth thy dayes into a short number."" This usage of the term referred to a human computer, a person who carried out calculations or computations. The word continued with the same meaning until the middle of the 20th century. During the latter part of this period women were often hired as computers because they could be paid less than their male counterparts.[1] By 1943, most human computers were women.[2]
+
+The Online Etymology Dictionary gives the first attested use of computer in the 1640s, meaning 'one who calculates'; this is an ""agent noun from compute (v.)"". The Online Etymology Dictionary states that the use of the term to mean ""'calculating machine' (of any type) is from 1897."" The Online Etymology Dictionary indicates that the ""modern use"" of the term, to mean 'programmable digital electronic computer' dates from ""1945 under this name; [in a] theoretical [sense] from 1937, as Turing machine"".[3]
+
+History
+Main articles: History of computing and History of computing hardware
+For a chronological guide, see Timeline of computing.
+Pre-20th century
+
+The Ishango bone, a bone tool dating back to prehistoric Africa
+Devices have been used to aid computation for thousands of years, mostly using one-to-one correspondence with fingers. The earliest counting device was most likely a form of tally stick. Later record keeping aids throughout the Fertile Crescent included calculi (clay spheres, cones, etc.) which represented counts of items, likely livestock or grains, sealed in hollow unbaked clay containers.[a][4] The use of counting rods is one example.
+
+
+The Chinese suanpan (算盘). The number represented on this abacus is 6,302,715,408.
+The abacus was initially used for arithmetic tasks. The Roman abacus was developed from devices used in Babylonia as early as 2400 BC. Since then, many other forms of reckoning boards or tables have been invented. In a medieval European counting house, a checkered cloth would be placed on a table, and markers moved around on it according to certain rules, as an aid to calculating sums of money.[5]
+
+
+The Antikythera mechanism, dating back to ancient Greece circa 150–100 BC, is an early analog computing device.
+The Antikythera mechanism is believed to be the earliest known mechanical analog computer, according to Derek J. de Solla Price.[6] It was designed to calculate astronomical positions. It was discovered in 1901 in the Antikythera wreck off the Greek island of Antikythera, between Kythera and Crete, and has been dated to approximately c. 100 BC. Devices of comparable complexity to the Antikythera mechanism would not reappear until the fourteenth century.[7]
+
+Many mechanical aids to calculation and measurement were constructed for astronomical and navigation use. The planisphere was a star chart invented by Abū Rayhān al-Bīrūnī in the early 11th century.[8] The astrolabe was invented in the Hellenistic world in either the 1st or 2nd centuries BC and is often attributed to Hipparchus. A combination of the planisphere and dioptra, the astrolabe was effectively an analog computer capable of working out several different kinds of problems in spherical astronomy. An astrolabe incorporating a mechanical calendar computer[9][10] and gear-wheels was invented by Abi Bakr of Isfahan, Persia in 1235.[11] Abū Rayhān al-Bīrūnī invented the first mechanical geared lunisolar calendar astrolabe,[12] an early fixed-wired knowledge processing machine[13] with a gear train and gear-wheels,[14] c. 1000 AD.
+
+The sector, a calculating instrument used for solving problems in proportion, trigonometry, multiplication and division, and for various functions, such as squares and cube roots, was developed in the late 16th century and found application in gunnery, surveying and navigation.
+
+The planimeter was a manual instrument to calculate the area of a closed figure by tracing over it with a mechanical linkage.
+
+
+A slide rule
+The slide rule was invented around 1620–1630 by the English clergyman William Oughtred, shortly after the publication of the concept of the logarithm. It is a hand-operated analog computer for doing multiplication and division. As slide rule development progressed, added scales provided reciprocals, squares and square roots, cubes and cube roots, as well as transcendental functions such as logarithms and exponentials, circular and hyperbolic trigonometry and other functions. Slide rules with special scales are still used for quick performance of routine calculations, such as the E6B circular slide rule used for time and distance calculations on light aircraft.
+
+In the 1770s, Pierre Jaquet-Droz, a Swiss watchmaker, built a mechanical doll (automaton) that could write holding a quill pen. By switching the number and order of its internal wheels different letters, and hence different messages, could be produced. In effect, it could be mechanically ""programmed"" to read instructions. Along with two other complex machines, the doll is at the Musée d'Art et d'Histoire of Neuchâtel, Switzerland, and still operates.[15]
+
+In 1831–1835, mathematician and engineer Giovanni Plana devised a Perpetual Calendar machine, which, through a system of pulleys and cylinders and over, could predict the perpetual calendar for every year from AD 0 (that is, 1 BC) to AD 4000, keeping track of leap years and varying day length. The tide-predicting machine invented by the Scottish scientist Sir William Thomson in 1872 was of great utility to navigation in shallow waters. It used a system of pulleys and wires to automatically calculate predicted tide levels for a set period at a particular location.
+
+The differential analyser, a mechanical analog computer designed to solve differential equations by integration, used wheel-and-disc mechanisms to perform the integration. In 1876, Sir William Thomson had already discussed the possible construction of such calculators, but he had been stymied by the limited output torque of the ball-and-disk integrators.[16] In a differential analyzer, the output of one integrator drove the input of the next integrator, or a graphing output. The torque amplifier was the advance that allowed these machines to work. Starting in the 1920s, Vannevar Bush and others developed mechanical differential analyzers."	0

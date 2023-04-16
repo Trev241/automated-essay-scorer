@@ -1,7 +1,6 @@
 import pandas as pd
 
-from src import app
-from src.autograder import Autograder
+from src import app, autograder
 from src.forms import EssayForm, PromptSelectForm
 
 from flask import render_template, url_for, redirect
@@ -13,20 +12,23 @@ Markdown(app)
 # --PROMPTS--
 ESSAY_PROMPTS = []
 for i in range(8):
-    with open(f'src/data/prompts/prompt{i + 1}.md', 'r', encoding='utf-8') as f:
+    with open(f'data/prompts/prompt{i + 1}.md', 'r', encoding='utf-8') as f:
         ESSAY_PROMPTS.append(''.join(f.readlines()))
 
 selected = 0
-grade = 1
-
-autograder = Autograder()
+report = {
+    'prediction': {
+        'value': 'N/A',
+        'description': 'The predicted score of your essay'
+    }
+}
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     essay_form = EssayForm()
     prompt_form = PromptSelectForm()
 
-    global selected, grade
+    global selected, report
 
     if request.method == 'POST':
         if 'submit' in request.form:
@@ -37,9 +39,9 @@ def index():
                 'domain1_score': [0]
             })
             df.set_index('essay_id', inplace=True)
-            df.to_csv('src/data/custom_input.tsv', sep='\t')
+            df.to_csv('data/custom_input.tsv', sep='\t')
 
-            grade = autograder.grade(df)
+            report = autograder.grade(df)
 
             return redirect(url_for('result'))
         else:
@@ -47,9 +49,14 @@ def index():
                 if f'prompt{i + 1}' in request.form:
                     selected = i
 
-    return render_template('index.html', essay_form=essay_form, prompt_form=prompt_form, prompt=ESSAY_PROMPTS[selected])
+    return render_template(
+        'index.html', 
+        essay_form=essay_form, 
+        prompt_form=prompt_form, 
+        prompt=ESSAY_PROMPTS[selected]
+    )
 
 @app.route('/result', methods=['GET'])
 def result():
-    global grade
-    return render_template('result.html', grade=grade)
+    global report
+    return render_template('result.html', report=report)

@@ -1,37 +1,86 @@
 {% extends 'layout_base.html' %}
 {% block content %}
-<div class="container">
-    <h1 class="display-2">Results</h1>
-    <p class="lead">Your essay's score is <b>{{ grade }}</b></p>
+<div class="container my-5">
+    <div class="d-flex align-items-center mb-4">
+        <h1>Your essay's score: </h1>
+        <h1 class="display-1 ms-4"><b>{{ report['prediction']['value'] }}</b></h1>
+    </div>
+    
+    <div class="mb-4">
+        <h4 class="">How do I interpret my score?</h4>
+        <p>
+            The model rates your essay on a scale from 0 to 4. Lower ratings suggest lower quality writing whereas higher scores
+            demonstrate the opposite. To understand your score better, you can take a look at the table below.
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Score</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="col">0 - 1</td>
+                    <td scope="col">Poorly-developed</td>
+                </tr>
+                <tr>
+                    <td scope="col">2</td>
+                    <td scope="col">Adequate</td>
+                </tr>
+                <tr>
+                    <td scope="col">3</td>
+                    <td scope="col">Above satisfactory</td>
+                </tr>
+                <tr>
+                    <td scope="col">4</td>
+                    <td scope="col">Exceptional or near-perfect</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <table class="table caption-top">
-        <caption>Breakdown of scores</caption>
-        <thead>
-            <tr>
-                <th scope="col">Score</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td scope="col">1</td>
-                <td scope="col">Poorly-developed</td>
-            </tr>
-            <tr>
-                <td scope="col">2</td>
-                <td scope="col">Adequate</td>
-            </tr>
-            <tr>
-                <td scope="col">3</td>
-                <td scope="col">Above satisfactory</td>
-            </tr>
-            <tr>
-                <td scope="col">4</td>
-                <td scope="col">Exceptional or near-perfect</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="mb-4">
+        <h4>How does it work?</h4>
+        <p>
+            The process of grading an essay can be divided into two major phases. In the first phase, the essay is 
+            thoroughly analyzed for all kinds of grammatical features. These can range from basic statistical 
+            features such as word count to more complex ones like sentiment. Once these features have been 
+            extracted, the model then attempts to make a prediction using these features.
+        </p>
+        <p>
+            As for the model itself, it has been trained on 12,976 essays spread over 8 different sets and 
+            uses the Random Forest Classifier for generating predictions.
+        </p>
+    </div>
 
-    <a href="{{ url_for('index') }}">Return</a>
+    <div class="mb-5">
+        <h4>Essay Analysis Report</h4>
+        <p>
+            An analysis report of all the features extracted and analyzed from your essay.
+            Note that essays are analyzed <b>after</b> all stopwords have been removed.
+            This is the reason why some values may seem "incorrect".
+        </p>
+        <table class="table table-striped table-hover table-responsive table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Feature</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in report %}
+                    <tr>
+                        <td scope="col">{{ entry }}</td>
+                        <td scope="col">{{ report[entry]['value'] }}</td>
+                        <td scope="col">{{ report[entry]['description'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ url_for('index') }}">Return to home page</a>
 </div>
 {% endblock %}
