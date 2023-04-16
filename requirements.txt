@@ -1,0 +1,13 @@
+Flask==2.2.2
+Flask_Bcrypt==1.0.1
+Flask_WTF==1.0.1
+language_tool_python==2.7.1
+nltk==3.7
+numpy==1.22.3
+pandas==1.4.4
+pyenchant==3.2.2
+readability_lxml==0.8.1
+scikit_learn==1.2.2
+spacy==3.4.1
+textblob==0.17.1
+WTForms==3.0.1
