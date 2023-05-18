@@ -15,4 +15,4 @@ ENV PATH $JAVA_HOME/bin:$PATH
 
 EXPOSE 5000
 
-CMD ["gunicorn", "src:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:443", "src:app"]
