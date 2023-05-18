@@ -202,8 +202,8 @@ class FeatureExtractor:
         vec_essay = v1.transform(cleaned_essays) 
         datasubset['relevance (TF-IDF)'] = cosine_similarity(vec_essay, vec_prompt).flatten()
         
-        temp_df = pd.DataFrame(vec_essay.toarray(), columns=v1.get_feature_names())
-        temp_df = pd.DataFrame(vec_prompt.toarray(), columns=v1.get_feature_names())
+        temp_df = pd.DataFrame(vec_essay.toarray(), columns=v1.get_feature_names_out())
+        temp_df = pd.DataFrame(vec_prompt.toarray(), columns=v1.get_feature_names_out())
         temp_df.to_csv('data/vector-essays.tsv', sep='\t')
         temp_df.to_csv('data/vector-prompt.tsv', sep='\t')
 
