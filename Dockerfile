@@ -15,7 +15,8 @@ ADD https://languagetool.org/download/LanguageTool-stable.zip /tmp/LanguageTool-
 RUN set -xe \
     && mkdir -p /tmp/language_tool \
     && unzip /tmp/LanguageTool-stable.zip -d /tmp/language_tool \
-    && mv -p /tmp/language_tool/LanguageTool-6.1 /root/.cache/language_tool_python
+    && mkdir /root/.cache/language_tool_python \
+    && mv /tmp/language_tool/LanguageTool-6.1 /root/.cache/language_tool_python
 
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
 ENV PATH $JAVA_HOME/bin:$PATH
