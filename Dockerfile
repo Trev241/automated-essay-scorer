@@ -23,4 +23,4 @@ ENV PATH $JAVA_HOME/bin:$PATH
 
 EXPOSE 5000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:443", "src:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:443", "--timeout", "120", "src:app"]
