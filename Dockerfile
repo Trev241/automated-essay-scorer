@@ -11,12 +11,12 @@ RUN set -xe \
     && pip install -r requirements.txt \
     && python -m spacy download en_core_web_sm
 
-ADD https://languagetool.org/download/LanguageTool-stable.zip /tmp/LanguageTool-stable.zip
+ADD https://languagetool.org/download/LanguageTool-5.7.zip /tmp/LanguageTool-5.7.zip
 RUN set -xe \
     && mkdir -p /tmp/language_tool \
-    && unzip /tmp/LanguageTool-stable.zip -d /tmp/language_tool \
-    && mkdir /root/.cache/language_tool_python \
-    && mv /tmp/language_tool/LanguageTool-6.1 /root/.cache/language_tool_python
+    && unzip /tmp/LanguageTool-5.7.zip -d /tmp/language_tool \
+    && mkdir -p /root/.cache/language_tool_python \
+    && mv /tmp/language_tool/LanguageTool-5.7 /root/.cache/language_tool_python/LanguageTool-5.7
 
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
 ENV PATH $JAVA_HOME/bin:$PATH
